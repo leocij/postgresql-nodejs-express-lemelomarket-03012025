@@ -1,9 +1,10 @@
 {
     "error": {
-      "missingFields": "${fields} are required",
-      "internalServerError": "Internal server error"
+      "missingFields": "${fields} are required.",
+      "internalServerError": "Internal server error."
     },
-       "success": {
-          "created": "${resource} created successfully"
-      }
+    "success": {
+      "created": "${resource} created successfully.",
+      "found": "${resource} found successfully."
+    }
   }
