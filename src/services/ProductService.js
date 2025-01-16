@@ -2,7 +2,11 @@ const ProductRepository = require('../repositories/ProductRepository');
 
 class ProductService {
     static async createProduct(product) {
-        return await ProductRepository.addProduct(product);
+        await ProductRepository.addProduct(product);
+    }
+
+    static async getAllProducts() {
+        return await ProductRepository.getAllProducts();
     }
 }
 

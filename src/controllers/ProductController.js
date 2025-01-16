@@ -17,14 +17,6 @@ ProductController.post('', async (req, res) => {
             });
         }
 
-        if (!brand || typeof brand !== 'string' || brand.trim() === '') {
-            return res.status(400).json({
-                status: 'error',
-                message: formatMessage(messages.error.missingFields, { fields: 'Brand' }),
-                data: null,
-            });
-        }
-
         await ProductService.createProduct({ name, brand });
 
         res.status(201).json({
@@ -35,11 +27,29 @@ ProductController.post('', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({
-            status: 'success',
+            status: 'error',
             message: messages.error.internalServerError,
             data: null,
         });
     }
 });
+
+ProductController.get('', async (req, res) => {
+    try {
+      const products = await ProductService.getAllProducts();
+      res.status(200).json({
+        status: 'success',
+        message: formatMessage(messages.success.found, { resource: 'Products' }),
+        data: products,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+          status: 'error',
+          message: messages.error.internalServerError,
+          data: null,
+      });
+    }
+  });
 
 module.exports = ProductController;

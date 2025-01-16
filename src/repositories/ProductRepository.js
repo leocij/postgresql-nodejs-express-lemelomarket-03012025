@@ -10,9 +10,16 @@ class ProductRepository {
             ) values (
                 $1, $2, current_timestamp, current_timestamp
             );
-            `,[
-                name, brand
-            ]);
+        `,[
+            name, brand
+        ]);
+    }
+
+    static async getAllProducts() {
+        const response = await Database.query(`
+            select * from products;
+        `);
+        return response.rows;
     }
 }
 
