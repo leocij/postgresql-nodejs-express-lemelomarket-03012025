@@ -1,9 +1,17 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const routes = require('./routes');
 const messages = require('./messages/messages.json');
 
 const app = express();
+
+// Opções de CORS
+const corsOptions = {
+    origin: 'http://localhost:3000',  // Permite a sua origem
+};
+ 
+app.use(cors(corsOptions)); // Aplica o middleware CORS
 
 app.use(express.json());
 
